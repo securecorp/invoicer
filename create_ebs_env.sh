@@ -10,12 +10,12 @@ fail() {
     exit 1
 }
 
-export AWS_DEFAULT_REGION=${AWS_REGION:-us-east-1}
+export AWS_DEFAULT_REGION=${AWS_REGION:-ap-northeast-2}
 
 datetag=$(date +%Y%m%d%H%M)
 identifier=$(whoami)ivcr$datetag
 mkdir -p tmp/$identifier
-
+echo "Identifier is=== $identifier"
 echo "Creating EBS application $identifier"
 
 # Find the ID of the default VPC
@@ -34,7 +34,8 @@ echo "DB security group is $dbsg"
 # Create the database
 dbinstclass="db.t2.micro"
 dbstorage=5
-dbpass=$(dd if=/dev/urandom bs=128 count=1 2>/dev/null| tr -dc _A-Z-a-z-0-9)
+#dbpass=$(dd if=/dev/urandom bs=128 count=1 2>/dev/null| tr -dc _A-Z-a-z-0-9)
+dbpass="tlzhq692900"
 aws rds create-db-instance \
     --db-name invoicer \
     --db-instance-identifier "$identifier" \
@@ -68,6 +69,7 @@ aws rds add-tags-to-resource \
 aws rds add-tags-to-resource \
     --resource-name $(jq -r '.DBInstances[0].DBInstanceArn' tmp/$identifier/rds.json) \
     --tags "Key=Owner,Value=$(whoami)"
+echo "Tagging.....complete"
 
 # Create an elasticbeantalk application
 aws elasticbeanstalk create-application \
@@ -76,12 +78,13 @@ aws elasticbeanstalk create-application \
 echo "ElasticBeanTalk application created"
 
 # Get the name of the latest Docker solution stack
-dockerstack="$(aws elasticbeanstalk list-available-solution-stacks | \
-    jq -r '.SolutionStacks[]' | grep -P '.+Amazon Linux.+running Docker.+' | head -1)"
+#dockerstack="$(aws elasticbeanstalk list-available-solution-stacks | \
+#    jq -r '.SolutionStacks[]' | grep -P '.+Amazon Linux.+running Docker.+' | head -1)"
+dockerstack="64bit Amazon Linux 2018.03 v2.12.14 running Docker 18.06.1-ce"
 
 # Create the EB API environment
-sed "s/POSTGRESPASSREPLACEME/$dbpass/" ebs-options.json > tmp/$identifier/ebs-options.json || fail
-sed -i "s/POSTGRESHOSTREPLACEME/$dbhost/" tmp/$identifier/ebs-options.json || fail
+sed "s/POSTGRESPASSREPLACEME/$dbpass/" ebs-options.json > tmp/$identifier/ebs-optionsbak.json || fail 
+sed "s/POSTGRESHOSTREPLACEME/$dbhost/" tmp/$identifier/ebs-optionsbak.json > tmp/$identifier/ebs-options.json || fail
 aws elasticbeanstalk create-environment \
     --application-name $identifier \
     --environment-name $identifier-invoicer-api \

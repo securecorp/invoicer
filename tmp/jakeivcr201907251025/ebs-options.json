@@ -18,11 +18,11 @@
         "Namespace": "aws:elasticbeanstalk:application:environment", 
         "OptionName": "INVOICER_POSTGRES_DB", 
         "Value": "invoicer"
-    }, 
+    },
     {
-        "Namespace": "aws:elasticbeanstalk:application:environment", 
-        "OptionName": "INVOICER_POSTGRES_HOST", 
-        "Value": "jake-invoicer-201907251435.c3rroo2q9qj0.us-east-1.rds.amazonaws.com"
+        "Namespace": "aws:elasticbeanstalk:application:environment",
+        "OptionName": "INVOICER_POSTGRES_HOST",
+        "Value": "jakeivcr201907251025.ce97vqlbgrwm.ap-northeast-2.rds.amazonaws.com"
     },
     {
         "Namespace": "aws:elasticbeanstalk:application:environment", 

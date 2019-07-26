@@ -1,0 +1,24 @@
+{
+    "Application": {
+        "ApplicationArn": "arn:aws:elasticbeanstalk:ap-northeast-2:125635581602:application/jakeivcr201907251151",
+        "ApplicationName": "jakeivcr201907251151",
+        "Description": "Invoicer  201907251151",
+        "DateCreated": "2019-07-25T02:55:05.271Z",
+        "DateUpdated": "2019-07-25T02:55:05.271Z",
+        "ConfigurationTemplates": [],
+        "ResourceLifecycleConfig": {
+            "VersionLifecycleConfig": {
+                "MaxCountRule": {
+                    "Enabled": false,
+                    "MaxCount": 200,
+                    "DeleteSourceFromS3": false
+                },
+                "MaxAgeRule": {
+                    "Enabled": false,
+                    "MaxAgeInDays": 180,
+                    "DeleteSourceFromS3": false
+                }
+            }
+        }
+    }
+}
