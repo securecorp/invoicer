@@ -1,0 +1,22 @@
+[
+  {
+    "Namespace": "aws:elb:healthcheck",
+    "OptionName": "Interval",
+    "Value": "15"
+  },
+  {
+    "Namespace": "aws:elb:healthcheck",
+    "OptionName": "Timeout",
+    "Value": "8"
+  },
+  {
+    "Namespace": "aws:elb:healthcheck",
+    "OptionName": "HealthyThreshold",
+    "Value": "2"
+  },
+  {
+    "Namespace": "aws:elb:healthcheck",
+    "OptionName": "UnhealthyThreshold",
+    "Value": "3"
+  }
+]
