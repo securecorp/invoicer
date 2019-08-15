@@ -6,6 +6,11 @@ jobs:
   working_directory: /go/src/github.com/securecorp/invoicer
   docker:
    - image: circleci/golang:1.10
+
+
+
+
+
   steps:
    - checkout
    - setup_remote_docker
