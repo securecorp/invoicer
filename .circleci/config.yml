@@ -26,7 +26,7 @@ jobs:
           name: Build application container
           command: |
             go install --ldflags '-extldflags "-static"' github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME};
-            [ ! -e bin ] && mkdir bin;
+            mkdir bin;
             cp "${GOPATH_HEAD}/bin/${CIRCLE_PROJECT_REPONAME}" bin/invoicer;
             docker build -t ${DOCKER_REPO}/${CIRCLE_PROJECT_REPONAME} .;
       - run:
@@ -64,5 +64,4 @@ jobs:
                 docker images --no-trunc | awk '/^app/ {print $3}' | sudo tee $CIRCLE_ARTIFACTS/docker-image-shasum256.txt;
                 docker push ${DOCKER_REPO}/${CIRCLE_PROJECT_REPONAME};
             fi
-
 
