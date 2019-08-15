@@ -107,7 +107,7 @@ func (association *Association) Replace(values ...interface{}) *Association {
 			if sourcePrimaryKeys := scope.getColumnAsArray(sourceForeignFieldNames, scope.Value); len(sourcePrimaryKeys) > 0 {
 				newDB = newDB.Where(fmt.Sprintf("%v IN (%v)", toQueryCondition(scope, relationship.ForeignDBNames), toQueryMarks(sourcePrimaryKeys)), toQueryValues(sourcePrimaryKeys)...)
 
-				association.setErr(relationship.JoinTableHandler.Delete(relationship.JoinTableHandler, newDB))
+				association.setErr(relationship.JoinTableHandler.Delete(relationship.JoinTableHandler, newDB, relationship))
 			}
 		} else if relationship.Kind == "has_one" || relationship.Kind == "has_many" {
 			// has_one or has_many relations, set foreign key to be nil (TODO or delete them?)
@@ -173,7 +173,7 @@ func (association *Association) Delete(values ...interface{}) *Association {
 		sql := fmt.Sprintf("%v IN (%v)", toQueryCondition(scope, relationship.AssociationForeignDBNames), toQueryMarks(deletingPrimaryKeys))
 		newDB = newDB.Where(sql, toQueryValues(deletingPrimaryKeys)...)
 
-		association.setErr(relationship.JoinTableHandler.Delete(relationship.JoinTableHandler, newDB))
+		association.setErr(relationship.JoinTableHandler.Delete(relationship.JoinTableHandler, newDB, relationship))
 	} else {
 		var foreignKeyMap = map[string]interface{}{}
 		for _, foreignKey := range relationship.ForeignDBNames {
@@ -267,16 +267,15 @@ func (association *Association) Count() int {
 		query        = scope.DB()
 	)
 
-	switch relationship.Kind {
-	case "many_to_many":
+	if relationship.Kind == "many_to_many" {
 		query = relationship.JoinTableHandler.JoinWith(relationship.JoinTableHandler, query, scope.Value)
-	case "has_many", "has_one":
+	} else if relationship.Kind == "has_many" || relationship.Kind == "has_one" {
 		primaryKeys := scope.getColumnAsArray(relationship.AssociationForeignFieldNames, scope.Value)
 		query = query.Where(
 			fmt.Sprintf("%v IN (%v)", toQueryCondition(scope, relationship.ForeignDBNames), toQueryMarks(primaryKeys)),
 			toQueryValues(primaryKeys)...,
 		)
-	case "belongs_to":
+	} else if relationship.Kind == "belongs_to" {
 		primaryKeys := scope.getColumnAsArray(relationship.ForeignFieldNames, scope.Value)
 		query = query.Where(
 			fmt.Sprintf("%v IN (%v)", toQueryCondition(scope, relationship.AssociationForeignDBNames), toQueryMarks(primaryKeys)),
@@ -368,7 +367,6 @@ func (association *Association) saveAssociations(values ...interface{}) *Associa
 	return association
 }
 
-// setErr set error when the error is not nil. And return Association.
 func (association *Association) setErr(err error) *Association {
 	if err != nil {
 		association.Error = err

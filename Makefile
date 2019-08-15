@@ -13,7 +13,7 @@ install:
 	$(GO) install $(PROJECT)
 
 vendor:
-	govend -u --prune
+	govend -u
 
 tag: all
 	git tag -s $(TAGVER) -a -m "$(TAGMSG)"
