@@ -24,11 +24,11 @@ jobs:
           [ ! -e bin ] && mkdir bin;
           cp "${GOPATH_HEAD}/bin/${CIRCLE_PROJECT_REPONAME}" bin/invoicer;
           docker build -t ${DOCKER_REPO}/${CIRCLE_PROJECT_REPONAME} .;
-    - run:
-        name: Run application in background
-        command: |
-          docker run ${DOCKER_REPO}/${CIRCLE_PROJECT_REPONAME}
-        background: true
+#    - run:
+#        name: Run application in background
+#        command: |
+#          docker run ${DOCKER_REPO}/${CIRCLE_PROJECT_REPONAME}
+#        background: true
 #    - run:
 #        name: ZAP baseline test of application
 #        command: |
