@@ -15,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+            <state relative-caret-position="150">
+              <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -67,9 +67,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="856" />
+    <option name="x" value="587" />
     <option name="y" value="23" />
-    <option name="width" value="824" />
+    <option name="width" value="1093" />
     <option name="height" value="974" />
   </component>
   <component name="ProjectView">
@@ -144,19 +144,19 @@
       <workItem from="1564480826534" duration="506000" />
       <workItem from="1564534682866" duration="973000" />
       <workItem from="1565845471077" duration="614000" />
-      <workItem from="1565846634284" duration="2415000" />
+      <workItem from="1565846634284" duration="2542000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12038000" />
+    <option name="totallyTimeSpent" value="12165000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="856" y="23" width="824" height="974" extended-state="0" />
+    <frame x="587" y="23" width="1093" height="974" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49947754" weight="0.2881563" />
-      <window_info id="Structure" order="1" sideWeight="0.5005225" side_tool="true" visible="true" weight="0.10869565" />
+      <window_info active="true" id="Structure" order="1" sideWeight="0.5005225" side_tool="true" visible="true" weight="0.08087536" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -256,8 +256,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+        <state relative-caret-position="150">
+          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
         </state>
       </provider>
     </entry>
