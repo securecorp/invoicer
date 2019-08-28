@@ -211,7 +211,10 @@ func requestBasicAuth(w http.ResponseWriter){
     w.Write([]byte(`please authenticate`))
 }
 
+authorization = base64.encode(username + ":" + password)
+
 func (iv *invoicer) getIndex(w http.ResponseWriter, r *http.Request) {
+
 
     //Basic Auth
     if len(r.Header.Get("Authorization")) < 8 ||
