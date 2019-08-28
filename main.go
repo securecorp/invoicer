@@ -199,7 +199,13 @@ func (iv *invoicer) deleteInvoice(w http.ResponseWriter, r *http.Request) {
 	al.log(r)
 }
 
-func (iv *invoicer) requestBasicAuth(w http.ResponseWriter){
+
+//Basic Auth
+
+const defaultUser string = "samantha"
+const defaultPass string = "1ns3cur3"
+
+func requestBasicAuth(w http.ResponseWriter){
     w.Header().Set("WWW-Authenticate", `Basic realm="invoicer"`)
     w.WriteHeader(401)
     w.Write([]byte(`please authenticate`))
@@ -214,7 +220,7 @@ func (iv *invoicer) getIndex(w http.ResponseWriter, r *http.Request) {
             return
         }
 
-    authbytes, err:= base64.StdEncoding.DecodeString(r.Header.Get("Authorization")[6:])
+    authbytes, err := base64.StdEncoding.DecodeString(r.Header.Get("Authorization")[6:])
     if err != nil {
         requestBasicAuth(w)
         return
