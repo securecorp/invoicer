@@ -1,0 +1,25 @@
+aws:
+    region: us-west-1
+    accountnumber: 148856349126
+
+components:
+    - name: application
+      type: ec2
+      tag: 
+          key: elasticbeanstalk:environment-name
+          value: invoicer-api
+
+    - name: database
+      type: rds
+      tag:
+          key: environment-name
+          value: invoicer-api
+
+rules:
+    - src: 0.0.0.0/0 
+      dst: application
+      dport: 80
+
+    - src: application
+      dst: database
+      dport: 5432

@@ -1,0 +1,1 @@
+{"is_paid": false, "amount": 16645, "due_date": "2016-05-25T23:00:00Z", "charges": [{"type":"blood work5", "amount": 16645, "description": "<script type='text/javascript'>alert('5xss');</script>"} ] }
