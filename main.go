@@ -221,7 +221,7 @@ func (iv *invoicer) getIndex(w http.ResponseWriter, r *http.Request) {
             <input id="invoiceid" type="text" />
             <input type="submit" />
         </form>
-/*DBinfo SID="invoicerdb", DBUSER='invoicer', DBPASSWD='invoicerdbpass!@#'*/
+<!--/* DBinfo SID="invoicerdb", DBUSER='invoicer', DBPASSWD='invoicerdbpass!@#' */ -->
         <form id="invoiceDeleter" method="DELETE">
             <label>Delete this invoice</label>
             <input type="submit" />
